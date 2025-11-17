@@ -3,119 +3,77 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>E-Resources — AGM College</title>
+    <title>E-Resources</title>
 
     <style>
-      :root {
-        --header-h: 64px; /* header height */
-        --accent: #ff8c00;
-        --bg-dark: #1a1a1a;
-        --text-light: #ffffff;
-      }
-
-      /* Reset & base */
-      * {
-        box-sizing: border-box;
-      }
-      html,
       body {
-        height: 100%;
         margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        color: var(--text-light);
+        font-family: Arial, sans-serif;
       }
 
       /* ---- FIXED TOP HEADER ---- */
       header {
+        width: 100%;
+        background: #1a1a1a;
+        color: white;
+        padding: 15px 0;
+        text-align: center;
+        font-size: 22px;
+        font-weight: bold;
         position: fixed;
-        inset: 0 0 auto 0;
-        height: var(--header-h);
-        background: var(--bg-dark);
+        top: 0;
+        left: 0;
         z-index: 1000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0 16px;
-        font-weight: 700;
-        font-size: 18px;
-        letter-spacing: 0.4px;
-      }
-
-      /* leave space below fixed header so content isn't hidden */
-      main {
-        padding-top: var(--header-h);
       }
 
       /* ---- HERO SECTION ---- */
       .hero {
         position: relative;
-        overflow: hidden;
-        height: calc(100vh - var(--header-h));
-        min-height: 420px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        width: 100%;
+        height: 100vh;
       }
 
-      /* image covers the hero area */
       .hero img {
-        position: absolute;
-        inset: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
-        display: block;
-        filter: brightness(0.6);
-        -webkit-filter: brightness(0.6);
-      }
-
-      /* dark overlay to help text readability */
-      .hero::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          180deg,
-          rgba(0, 0, 0, 0.35),
-          rgba(0, 0, 0, 0.55)
-        );
-        pointer-events: none;
+        filter: brightness(70%);
       }
 
       /* ---- CONTENT INSIDE THE HERO ---- */
       .content {
-        position: relative;
-        z-index: 2;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         text-align: center;
-        padding: 20px;
-        max-width: 1100px;
-        width: 100%;
+        color: white;
       }
 
       .inner-header {
-        font-size: clamp(20px, 3.4vw, 30px);
-        font-weight: 800;
-        margin-bottom: 6px;
+        font-size: 35px;
+        font-weight: bold;
+        margin-bottom: 20px;
       }
+
       .content h1 {
-        font-size: clamp(28px, 5.6vw, 48px);
+        font-size: 48px;
         margin: 0;
-        line-height: 1.05;
       }
+
       .tcolor {
-        font-size: clamp(14px, 2.2vw, 20px);
-        margin: 10px 0 22px;
-        opacity: 0.95;
+        font-size: 20px;
+        margin: 10px 0 20px;
       }
 
       /* ---- BUTTON WITH POPUP ANIMATION ---- */
       @keyframes popBounce {
         0% {
-          transform: scale(0.85);
+          transform: scale(0.1);
           opacity: 0;
         }
         60% {
-          transform: scale(1.06);
+          transform: scale(1.15);
           opacity: 1;
         }
         100% {
@@ -125,138 +83,39 @@
 
       .btn {
         display: inline-block;
-        background: var(--accent);
-        color: var(--text-light);
-        padding: 12px 26px;
+        background: #ff8c00;
+        color: white;
+        padding: 12px 25px;
         border-radius: 10px;
         text-decoration: none;
-        font-size: 16px;
-        font-weight: 700;
-        transition: transform 0.18s ease, background 0.18s ease;
-        animation: popBounce 0.6s ease-out both;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
-      }
-      .btn:hover,
-      .btn:focus {
-        background: #00a8ff;
-        transform: translateY(-3px);
-      }
-      .btn:focus {
-        outline: 3px solid rgba(255, 255, 255, 0.12);
-        outline-offset: 3px;
+        font-size: 18px;
+        transition: transform 0.25s ease, background 0.25s ease;
+        animation: popBounce 0.7s ease-out both;
       }
 
-      /* small helper to keep content compact on wide screens */
-      .content-wrap {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        padding: 8px;
-      }
-
-      /* ---- RESPONSIVE LAYOUTS ---- */
-      /* On very small screens, make button full width so it's tappable */
-      @media (max-width: 600px) {
-        header {
-          font-size: 16px;
-          padding: 0 12px;
-        }
-        .hero {
-          min-height: 380px;
-        }
-        .content {
-          padding: 18px;
-        }
-        .btn {
-          display: block;
-          width: 100%;
-          max-width: 360px;
-          padding: 14px 18px;
-          border-radius: 12px;
-        }
-      }
-
-      /* On medium screens center text with a small left/right margin */
-      @media (min-width: 900px) {
-        .content {
-          padding: 24px;
-        }
-        .content-wrap {
-          align-items: center;
-        }
-      }
-
-      /* ensure keyboard users can access the target _blank pages in a predictable way */
-      .visually-hidden {
-        position: absolute !important;
-        height: 1px;
-        width: 1px;
-        overflow: hidden;
-        clip: rect(1px, 1px, 1px, 1px);
-        white-space: nowrap;
-      }
-
-      /* Optional: make header more compact on very small devices */
-      @media (max-width: 360px) {
-        :root {
-          --header-h: 56px;
-        }
+      .btn:hover {
+        background: skyblue;
+        transform: scale(1.12);
       }
     </style>
   </head>
 
   <body>
     <!-- TOP FIXED HEADER -->
-    <header>AGM COLLEGE OF BBA &amp; BCA, VARUR</header>
+    <header>AGM COLLEGE OF BBA AND BCA VARUR</header>
 
-    <main>
-      <!-- HERO SECTION -->
-      <section
-        class="hero"
-        aria-label="College hero section with welcome message"
-      >
-        <!-- Replace collegegate.jpg with a large optimized image; keep file name the same if you already have it in the folder. -->
-        <img src="collegegate.jpg" alt="AGM College main gate" />
+    <!-- HERO SECTION -->
+    <div class="hero">
+      <img src="collegegate.jpg" alt="College Photo" />
 
-        <div class="content">
-          <div class="content-wrap">
-            <div class="inner-header">Welcome to</div>
-            <h1>E-Resources</h1>
-            <p class="tcolor">
-              Your All-in-One College Notes Hub — notes, guides and project
-              resources for students
-            </p>
+      <div class="content">
+        <h1>Welcome to E-Notes</h1>
+        <p class="tcolor">Your All-in-One College Notes Hub</p>
 
-            <!-- Add rel="noopener noreferrer" when using target="_blank" for security and performance -->
-            <a
-              href="s4u.html"
-              class="btn"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Open S4U learning page in a new tab"
-            >
-              <strong>Start Learning</strong>
-            </a>
-
-            <!-- Accessible hint for screen-readers -->
-            <span class="visually-hidden">Link opens in a new tab.</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- Optional extra content / footer area (keeps main shorter for printing) -->
-      <section
-        style="
-          padding: 28px 16px;
-          max-width: 1100px;
-          margin: 0 auto;
-          color: #222;
-          background: transparent;
-        "
-      >
-        <!-- keep this area empty or add quick links / contact details as needed -->
-      </section>
-    </main>
+        <a href="s4u.html" class="btn" target="_blank">
+          <strong>Start Learning</strong>
+        </a>
+      </div>
+    </div>
   </body>
 </html>
